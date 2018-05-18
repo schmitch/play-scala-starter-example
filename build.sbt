@@ -17,6 +17,7 @@ libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 mainClass in assembly := Some("play.core.server.ProdServerStart")
 fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value)
 
+mainClass in assembly := Some("controllers.Main")
 test in assembly := {}
 assemblyMergeStrategy in assembly := {
   case manifest if manifest.contains("MANIFEST.MF") =>
