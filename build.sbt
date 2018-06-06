@@ -2,21 +2,23 @@ name := """play-scala-starter-example"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val root = (project in file("."))//.enablePlugins(PlayScala)
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-// scalaVersion := "2.12.5"
-scalaVersion := "2.11.12"
-crossScalaVersions := Seq("2.11.12", "2.12.5")
+ scalaVersion := "2.12.6"
+//scalaVersion := "2.11.12"
+//crossScalaVersions := Seq("2.11.12", "2.12.5")
 
+libraryDependencies += playCore
+libraryDependencies += akkaHttpServer
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 
 mainClass in assembly := Some("play.core.server.ProdServerStart")
-fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value)
-
+// fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value)
+mainClass in (Compile, run) := Some("controllers.Main")
 mainClass in assembly := Some("controllers.Main")
 test in assembly := {}
 assemblyMergeStrategy in assembly := {
